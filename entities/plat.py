@@ -1,0 +1,17 @@
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float
+from sqlalchemy.orm import relationship
+
+from config.database import Base
+
+
+class Plat(Base):
+    __tablename__ = "plat"
+    id_plat = Column(Integer, primary_key=True, autoincrement=True)
+    nom = Column(String(50), nullable=False)
+    description = Column(String(50), nullable=False)
+    allergene = Column(String(50), nullable=False)
+    prix = Column(Float, nullable=False)
+    archive = Column(Boolean, nullable=False)
+
+    id_categorie = Column(Integer, ForeignKey('id_categorie'), nullable=False)
+    categorie = relationship("categorie")
